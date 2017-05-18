@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  revive:
+    build: .
+    image: revive_latest
+    ports:
+      - 80:80
+    links:
+      - db
+  db:
+    image: mysql:8.0.1
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=revive
+      - MYSQL_USER=revive
+      - MYSQL_PASSWORD=revive
