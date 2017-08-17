@@ -3,16 +3,16 @@
 APACHE_CONF_DIR="/etc/apache2/"
 REVIVE_DIR="/var/www/html"
 
-# Copy the files only if revive is not installed.
+# Copy and chown the files only if revive is not installed.
+# This is in case you are using nfs or efs.
 if [ ! -f "${REVIVE_DIR}/var/INSTALLED" ]; then
   echo "Revive is not installed copying folder contents"
   rsync -a /tmp/revive/ ${REVIVE_DIR}
+  chown -R www-data:www-data ${REVIVE_DIR}
 fi
 
 echo "Cleaning up"
 rm -rf /tmp/revive/
-
-chown -R www-data:www-data ${REVIVE_DIR}
 
 # Start apache in the foreground
 source ${APACHE_CONF_DIR}/envvars
