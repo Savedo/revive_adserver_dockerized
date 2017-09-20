@@ -1,4 +1,4 @@
-FROM php:7.1.5-apache
+FROM php:7.1.9-apache
 
 MAINTAINER IT Savedo <it@savedo.de>
 
